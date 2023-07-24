@@ -1,5 +1,7 @@
 package tp.spring;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -41,6 +43,11 @@ public class Pianiste implements IMusicien {
 
 	public void setInstrument(IInstrument instrument) {
 		this.instrument = instrument;
+	}
+	
+	@PostConstruct
+	public void commeVousVoulez() {
+		System.out.println("Pianiste : Post Construct Appel");
 	}
 
 }

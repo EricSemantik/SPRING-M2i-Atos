@@ -1,29 +1,21 @@
 package tp.spring;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import tp.spring.config.ApplicationConfig;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 public class Principal {
+	
+	@Autowired
+	@Qualifier("guitariste")
+	private IMusicien musicien;
+	
+	@Autowired
+	private Pianiste musicienBis;
 
-	public static void main(String[] args) {
-//		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
-		
-		// Guitare guitare = new Guitare();
-		// Guitariste guitariste = new Guitariste(guitare); 
-		
-		
-		IMusicien musicien = (IMusicien) context.getBean("guitariste");
+	public void run() {
 		musicien.jouer();
 		
-		Pianiste musicienBis = context.getBean(Pianiste.class); // fonctionne mais c'est MAL !!!
 		musicienBis.jouer();
-		
-		IMusicien musicienTer = context.getBean("guitariste", IMusicien.class);
-		musicienTer.jouer();
-			
-		context.close();
 	}
 
 }
