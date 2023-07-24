@@ -10,7 +10,8 @@ public class Principal {
 	private IMusicien musicien;
 	
 	@Autowired
-	private Pianiste musicienBis;
+	@Qualifier("pianiste")
+	private IMusicien musicienBis;
 
 	public void run() {
 		musicien.jouer();
