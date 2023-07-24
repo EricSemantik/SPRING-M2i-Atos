@@ -14,13 +14,12 @@ public class Principal {
 		IMusicien musicien = (IMusicien) context.getBean("guitariste");
 		musicien.jouer();
 		
-		IMusicien musicienBis = context.getBean(IMusicien.class);
+		Pianiste musicienBis = context.getBean(Pianiste.class); // fonctionne mais c'est MAL !!!
 		musicienBis.jouer();
 		
 		IMusicien musicienTer = context.getBean("guitariste", IMusicien.class);
 		musicienTer.jouer();
-
-		
+			
 		context.close();
 	}
 

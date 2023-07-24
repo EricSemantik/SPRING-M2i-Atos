@@ -1,5 +1,11 @@
 package tp.spring;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+@Component
 public class Guitariste implements IMusicien {
 
 	private String morceau = "Vive le vent";
@@ -10,14 +16,15 @@ public class Guitariste implements IMusicien {
 	}
 
 	
+	
 	public Guitariste(IInstrument instrument) {
 		super();
 		this.instrument = instrument;
 	}
 	
 	
-
-	public Guitariste(String morceau, IInstrument instrument) {
+	@Autowired
+	public Guitariste(@Value("Frère Jacques") String morceau, @Qualifier("ukulele") IInstrument instrument) {
 		super();
 		this.morceau = morceau;
 		this.instrument = instrument;

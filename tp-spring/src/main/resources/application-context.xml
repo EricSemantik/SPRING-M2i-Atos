@@ -8,14 +8,19 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 	
+	<!-- Activation des annotions Spring : @Component, @Autowired, @Qualifier, ... -->
+	<context:annotation-config/>
 	
-	<bean id="guitariste" class="tp.spring.Guitariste">
+	<!-- Scan de ou des package(s) => Activation automatique du mode annotation -->
+	<context:component-scan base-package="tp.spring"/>
+	
+<!-- 	<bean id="guitariste" class="tp.spring.Guitariste"> -->
 <!-- 		<property name="instrument" ref="guitare"/> -->
 		
-		<constructor-arg ref="guitare"/>
-		<constructor-arg value="Frère Jacques"/>
-	</bean>
+<!-- 		<constructor-arg ref="guitare"/> -->
+<!-- 		<constructor-arg value="Frère Jacques"/> -->
+<!-- 	</bean> -->
 		
-	<bean id="guitare" class="tp.spring.Guitare"/>
+<!-- 	<bean id="guitare" class="tp.spring.Guitare"/> -->
 	
 </beans>

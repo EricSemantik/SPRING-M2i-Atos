@@ -1,5 +1,8 @@
 package tp.spring;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Ukulele implements IInstrument {
 
 	@Override
