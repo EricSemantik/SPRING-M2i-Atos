@@ -3,7 +3,7 @@ package tp.spring;
 public class Guitariste implements IMusicien {
 
 	private String morceau = "Vive le vent";
-	private IInstrument instrument = new Guitare();
+	private IInstrument instrument;
 
 	public Guitariste() {
 		super();
