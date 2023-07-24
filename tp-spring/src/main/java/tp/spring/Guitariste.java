@@ -14,6 +14,15 @@ public class Guitariste implements IMusicien {
 		super();
 		this.instrument = instrument;
 	}
+	
+	
+
+	public Guitariste(String morceau, IInstrument instrument) {
+		super();
+		this.morceau = morceau;
+		this.instrument = instrument;
+	}
+
 
 	@Override
 	public void jouer() {

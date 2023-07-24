@@ -10,7 +10,10 @@
 	
 	
 	<bean id="guitariste" class="tp.spring.Guitariste">
-		<property name="instrument" ref="guitare"/>
+<!-- 		<property name="instrument" ref="guitare"/> -->
+		
+		<constructor-arg ref="guitare"/>
+		<constructor-arg value="Frère Jacques"/>
 	</bean>
 		
 	<bean id="guitare" class="tp.spring.Guitare"/>
