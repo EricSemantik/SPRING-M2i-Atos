@@ -24,6 +24,8 @@
 
 	<bean id="guitare" class="tp.spring.Guitare" />
 
+	<aop:aspectj-autoproxy />
+
 	<bean id="spectateurAspect"
 		class="tp.spring.aspect.SpectateurAspect" />
 
