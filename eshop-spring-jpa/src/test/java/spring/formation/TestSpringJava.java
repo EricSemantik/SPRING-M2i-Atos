@@ -4,7 +4,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import spring.formation.config.ApplicationConfig;
 import spring.formation.model.Fournisseur;
+import spring.formation.model.Produit;
 import spring.formation.repo.IFournisseurRepository;
+import spring.formation.repo.IProduitRepository;
 
 public class TestSpringJava {
 
@@ -12,6 +14,7 @@ public class TestSpringJava {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 
 		IFournisseurRepository fournisseurRepo = context.getBean(IFournisseurRepository.class);
+		IProduitRepository produitRepo = context.getBean(IProduitRepository.class);
 
 		Fournisseur fournisseur = new Fournisseur();
 
@@ -19,7 +22,18 @@ public class TestSpringJava {
 		fournisseur.setResponsable("RESP");
 
 		fournisseur = fournisseurRepo.save(fournisseur);
-		
+
+		Produit produit = new Produit("NEW");
+
+		produit.setPrixAchat(10d);
+		produit.setPrixVente(100d);
+		produit.setFournisseur(new Fournisseur());
+		produit.getFournisseur().setId(1L);
+		produit.setModele("MOD");
+		produit.setReference("REF");
+
+		produit = produitRepo.save(produit);
+
 		context.close();
 	}
 
