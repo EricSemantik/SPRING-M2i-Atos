@@ -11,7 +11,7 @@ import tp.spring.IInstrument;
 import tp.spring.IMusicien;
 import tp.spring.Ukulele;
 
-@Configuration
+//@Configuration
 @ComponentScan("tp.spring")
 public class ApplicationConfig {
 	
