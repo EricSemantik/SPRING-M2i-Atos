@@ -31,13 +31,7 @@ public class FournisseurRepositoryJpa implements IFournisseurRepository {
 
 	@Transactional(readOnly = false)
 	public Fournisseur save(Fournisseur entity) {
-		if (!em.contains(entity)) {
-			em.persist(entity);
-		}
-
-		else { // UPDATE
-			entity = em.merge(entity);
-		}
+		entity = em.merge(entity);
 
 		return entity;
 	}

@@ -31,13 +31,7 @@ public class ProduitRepositoryJpa implements IProduitRepository {
 
 	@Transactional(readOnly = false)
 	public Produit save(Produit entity) {
-		if (!em.contains(entity)) {
-			em.persist(entity);
-		}
-
-		else { // UPDATE
-			entity = em.merge(entity);
-		}
+		entity = em.merge(entity);
 
 		return entity;
 	}
