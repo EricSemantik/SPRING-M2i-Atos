@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+
+	<!-- Configuration de l'unité de persistance -->
+	<persistence-unit name="EshopUnit" transaction-type="RESOURCE_LOCAL">
+		<!-- Fournisseur HIBERNATE -->
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+		<!-- Liste des classes d'entité -->
+<!-- 		<class>spring.formation.model.Fournisseur</class> -->
+<!-- 		<class>spring.formation.model.Client</class> -->
+<!-- 		<class>spring.formation.model.Adresse</class> -->
+<!-- 		<class>spring.formation.model.Commande</class> -->
+<!-- 		<class>spring.formation.model.CommandeDetail</class> -->
+<!-- 		<class>spring.formation.model.Reparateur</class> -->
+<!-- 		<class>spring.formation.model.Commentaire</class> -->
+<!-- 		<class>spring.formation.model.Produit</class> -->
+
+		<!-- Propriétés Hibernate -->
+		<properties>
+			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/eshop" />
+			<property name="hibernate.connection.user" value="postgres" />
+			<property name="hibernate.connection.password" value="admin" />
+			
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<!-- On imprime les requêtes SQL générées par Hibernate dans la console -->
+			<property name="hibernate.show_sql" value="true" />
+		</properties>
+	</persistence-unit>
+</persistence>
