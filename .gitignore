@@ -11,3 +11,9 @@ eshop-jpa/.classpath
 eshop-jpa/.project
 
 eshop-jpa/.settings/
+
+eshop-spring-jpa/.classpath
+
+eshop-spring-jpa/.project
+
+eshop-spring-jpa/.settings/
