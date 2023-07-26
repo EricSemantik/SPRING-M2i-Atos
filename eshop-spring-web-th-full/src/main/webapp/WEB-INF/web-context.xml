@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	
+	<!-- Activation des annotations @Controller, @RequestMapping, ... -->
+	<mvc:annotation-driven/>
+	
+	<!-- Scanner le package où se situe les Controller -->
+	<context:component-scan base-package="spring.formation.controller"/>
+	
+	<!-- Configuration des exclusions sur les urls ...../css/** vers un répertoire physique -->
+	<mvc:resources location="/css/" mapping="/css/**" />
+	<mvc:resources location="/js/" mapping="/js/**" />
+	
+	<!-- Configuration du mode restitution des Vues avec Thymeleaf -->
+	<bean id="templateResolver" class="org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver">
+		<property name="prefix" value="/WEB-INF/templates/" />
+		<property name="suffix" value=".html" />
+		<property name="templateMode" value="HTML" />
+	</bean>
+	
+	<bean id="templateEngine" class="org.thymeleaf.spring5.SpringTemplateEngine">
+		<property name="templateResolver" ref="templateResolver" />
+		<property name="enableSpringELCompiler" value="true" />
+		<property name="additionalDialects">
+			<set>
+				<bean class="nz.net.ultraq.thymeleaf.LayoutDialect"/>
+			</set>
+		</property>
+	</bean>
+	
+	<bean id="viewResolver" class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
+		<property name="templateEngine" ref="templateEngine" />
+	</bean>
+</beans>

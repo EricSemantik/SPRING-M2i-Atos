@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="layout.html">
+<head>
+<meta charset="UTF-8">
+<title>Mon titre de l'accueil</title>
+</head>
+<body>
+	<section layout:fragment="monContenu">
+		<div class="jumbotron">
+			<h1 class="display-4">Bien le bonjour [[${username}]]! [[${#dates.format(dtJour, 'dd/MM/yyyy')}]]</h1>
+		</div>
+	</section>
+</body>
+</html>

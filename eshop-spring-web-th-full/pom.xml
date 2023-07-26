@@ -1,0 +1,129 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>spring.formation</groupId>
+	<artifactId>eshop-spring-web-th-full</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<properties>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+
+		<spring.version>6.0.11</spring.version>
+		<spring-data-jpa.version>3.1.2</spring-data-jpa.version>
+		<hibernate.version>6.2.7.Final</hibernate.version>
+		<hibernate-validator.version>8.0.1.Final</hibernate-validator.version>
+		<thymeleaf.version>3.1.1.RELEASE</thymeleaf.version>
+		<thymeleaf-layout-dialect.version>3.2.1</thymeleaf-layout-dialect.version>
+		<postgresql.version>42.4.0</postgresql.version>
+		<dbcp2.version>2.9.0</dbcp2.version>
+		<junit.version>4.13.2</junit.version>
+	</properties>
+
+
+	<dependencies>
+		<!-- SPRING -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<!-- SPRING DATA JPA -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>${spring-data-jpa.version}</version>
+		</dependency>
+		<!-- JPA / HIBERNATE -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+		<!-- APACHE COMMONS DBCP2 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+			<version>${dbcp2.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.hibernate.validator</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>${hibernate-validator.version}</version>
+		</dependency>
+		<!-- Connecteur PostgreSQL -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>${postgresql.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- SPRING WEB MVC -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		
+		<!-- THYMELEAF -->
+		<dependency>
+		    <groupId>org.thymeleaf</groupId>
+		    <artifactId>thymeleaf-spring6</artifactId>
+		    <version>${thymeleaf.version}</version>
+		</dependency>
+		
+		<!-- THYMELEAF LAYOUT DIALECT -->
+		<dependency>
+		    <groupId>nz.net.ultraq.thymeleaf</groupId>
+		    <artifactId>thymeleaf-layout-dialect</artifactId>
+		    <version>${thymeleaf-layout-dialect.version}</version>
+		</dependency>
+		
+		<!-- SERVLET API(déjà intégré dans tomcat) -->
+<!--		<dependency>-->
+<!--		    <groupId>jakarta.servlet</groupId>-->
+<!--		    <artifactId>jakarta.servlet-api</artifactId>-->
+<!--		    <version>6.0.0</version>-->
+<!--		    <scope>provided</scope>-->
+<!--		</dependency>		-->
+
+		<!-- JUNIT -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- SPRING TEST -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.3.2</version>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

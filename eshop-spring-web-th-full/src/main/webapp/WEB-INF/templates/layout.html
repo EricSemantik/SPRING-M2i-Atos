@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title layout:title-pattern="$CONTENT_TITLE"></title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/bootstrap-icons.css}">
+</head>
+<body>
+	<header>
+		<ul class="nav nav-pills m-5">
+			<li class="nav-item"><a class="nav-link" th:href="@{/}">Accueil</a></li>
+			<li class="nav-item"><a class="nav-link" th:href="@{/commentaire}">Commentaire</a></li>
+			<li class="nav-item"><a class="nav-link" th:href="@{/fournisseur}">Fournisseur</a></li>
+			<li class="nav-item"><a class="nav-link" th:href="@{/produit}">Produit</a></li>
+			<li class="nav-item"><a class="nav-link" th:href="@{/client}">Client</a></li>
+			<li class="nav-item"><a class="nav-link" th:href="@{/adresse}">Adresse</a></li>
+			<li class="nav-item"><a class="nav-link" th:href="@{/commande}">Commande</a></li>
+		</ul>
+	</header>
+	<div class="container-fluid">
+		<section layout:fragment="monContenu"></section>
+	</div>
+	
+	<script th:src="@{/js/bootstrap.bundle.js}"></script>
+</body>
+</html>
