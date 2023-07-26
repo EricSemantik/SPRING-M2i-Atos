@@ -17,7 +17,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "produit")
-@NamedQuery(name = "Produit.findAllByStock", query = "select p from Produit where p.stock > :quantite")
+@NamedQuery(name = "Produit.findAllByStock", query = "select p from Produit p where p.stock > :quantite")
 public class Produit {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

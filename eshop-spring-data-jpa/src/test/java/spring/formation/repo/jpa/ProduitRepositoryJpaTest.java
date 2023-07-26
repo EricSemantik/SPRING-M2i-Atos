@@ -1,87 +1,111 @@
 package spring.formation.repo.jpa;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import spring.formation.model.Fournisseur;
+import spring.formation.config.ApplicationConfig;
 import spring.formation.model.Produit;
 import spring.formation.repo.IProduitRepository;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = ApplicationConfig.class)
 public class ProduitRepositoryJpaTest {
-	private IProduitRepository repoProduit = new ProduitRepositoryJpa();
-	
+
+	@Autowired
+	private IProduitRepository repoProduit;
+
 	@Test
 	public void testFindAll() {
-		List<Produit> produits = this.repoProduit.findAll();
+		int startSize = repoProduit.findAll().size();
 
-		assertNotNull(produits);
-		assertNotEquals(0, produits.size());
-		assertNotEquals(Long.valueOf(0), produits.get(0).getId());
-		assertNotNull(produits.get(0).getLibelle());
+		Produit produit = new Produit("NEW");
+
+		produit = repoProduit.save(produit);
+
+		int endSize = repoProduit.findAll().size();
+
+		assertEquals(1, endSize - startSize);
 	}
-	
-//	@Test
+
+	@Test
 	public void testFindById() {
-		Long produitId = 1L;
-		Produit produit = this.repoProduit.findById(produitId).get();
-		
-		assertNotNull(produit);
-		assertNotNull(produit.getDetails());
+		Produit produit = new Produit("NEW");
+		produit = repoProduit.save(produit);
+
+		Produit produitFind = this.repoProduit.findById(produit.getId()).get();
+
+		assertNotNull(produitFind);
+		assertNotNull(produitFind.getDetails());
 	}
-	
-//	@Test
+
+	@Test
 	public void shouldAdd() {
 		Produit produit = new Produit("NEW");
-		
+
 		produit.setPrixAchat(10d);
 		produit.setPrixVente(100d);
-		produit.setFournisseur(new Fournisseur());
-		produit.getFournisseur().setId(1L);
 		produit.setModele("MOD");
 		produit.setReference("REF");
-		
+
 		produit = this.repoProduit.save(produit);
 
-		assertNotEquals(Long.valueOf(0), produit.getId());
+		Produit produitFind = this.repoProduit.findById(produit.getId()).get();
+
+		assertEquals((Double) 10.0, produitFind.getPrixAchat());
+		assertEquals((Double) 100.0, produitFind.getPrixVente());
+		assertEquals("MOD", produitFind.getModele());
+		assertEquals("REF", produitFind.getReference());
 	}
-	
-//	@Test
+
+	@Test
 	public void shouldUpdate() {
-		Long produitId = this.getLastId();
+		Produit produit = new Produit("NEW");
+
+		produit.setPrixAchat(10d);
+		produit.setPrixVente(100d);
+		produit.setModele("MOD");
+		produit.setReference("REF");
+
+		produit = this.repoProduit.save(produit);
+		
 		String produitNom = UUID.randomUUID().toString();
-		Produit produit = this.repoProduit.findById(produitId).get();
-		
-		produit.setLibelle(produitNom);
-		this.repoProduit.save(produit);
-		
-		produit = this.repoProduit.findById(produitId).get();
+		Produit produitFind = this.repoProduit.findById(produit.getId()).get();
 
-		assertNotNull(produit);
-		assertEquals(produitId, produit.getId());
-		assertEquals(produitNom, produit.getLibelle());
+		produitFind.setLibelle(produitNom);
+		produitFind = this.repoProduit.save(produitFind);
+
+		produitFind = this.repoProduit.findById(produitFind.getId()).get();
+
+		assertNotNull(produitFind);
+		assertEquals(produitNom, produitFind.getLibelle());
 	}
-	
-//	@Test
+
+	@Test
 	public void testDeleteById() {
-		Long produitId = this.getLastId();
-		this.repoProduit.deleteById(produitId);
-		
-		Optional<Produit> optProduit = this.repoProduit.findById(produitId);
+		Produit produit = new Produit("NEW");
 
-		assertNotNull(optProduit);
-		assertFalse(optProduit.isPresent());
+		produit.setPrixAchat(10d);
+		produit.setPrixVente(100d);
+		produit.setModele("MOD");
+		produit.setReference("REF");
+
+		produit = this.repoProduit.save(produit);
+		
+		int startSize = repoProduit.findAll().size();
+		
+		this.repoProduit.deleteById(produit.getId());
+
+		int endSize = repoProduit.findAll().size();
+		assertEquals(-1, endSize - startSize);
 	}
-	
-	private Long getLastId() {
-		List<Produit> fournisseurs = this.repoProduit.findAll();
-		return fournisseurs.get(fournisseurs.size() - 1).getId();
-	}
+
+
 }

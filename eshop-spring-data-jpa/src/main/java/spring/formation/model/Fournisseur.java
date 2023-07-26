@@ -7,10 +7,12 @@ import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue("fournisseur")
+@NamedQuery(name = "Fournisseur.findAllWithoutProduits", query = "select f from Fournisseur f where f.produits is empty")
 public class Fournisseur extends Personne {
 	@Column(name = "FOU_RESPONSABLE", length = 200, nullable = false)
 	private String responsable;
