@@ -3,6 +3,8 @@ package spring.formation.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
@@ -15,9 +17,11 @@ import jakarta.persistence.OneToMany;
 @NamedQuery(name = "Fournisseur.findAllWithoutProduits", query = "select f from Fournisseur f where f.produits is empty")
 public class Fournisseur extends Personne {
 	@Column(name = "FOU_RESPONSABLE", length = 200, nullable = false)
+	@JsonView(Views.ViewCommon.class)
 	private String responsable;
 
 	@OneToMany(mappedBy = "fournisseur")
+	@JsonView(Views.ViewFournisseurWithProduits.class)
 	private List<Produit> produits = new ArrayList<>();
 
 	@ManyToMany(mappedBy = "fournisseurs")

@@ -1,5 +1,7 @@
 package spring.formation.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,8 +18,11 @@ import jakarta.persistence.Table;
 public abstract class Personne {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.ViewCommon.class)
 	protected Long id;
+	@JsonView(Views.ViewCommon.class)
 	protected String nom;
+	@JsonView(Views.ViewCommon.class)
 	protected String adresse;
 
 	public Long getId() {

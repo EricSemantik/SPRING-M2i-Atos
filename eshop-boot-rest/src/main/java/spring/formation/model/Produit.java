@@ -3,6 +3,8 @@ package spring.formation.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,28 +24,36 @@ public class Produit {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "PRO_ID")
+	@JsonView(Views.ViewCommon.class)
 	private Long id;
 
 	@Column(name = "PRO_NOM", length = 150)
+	@JsonView(Views.ViewCommon.class)
 	private String libelle;
 
 	@Column(name = "PRO_PRIX_ACHAT")
+	@JsonView(Views.ViewCommon.class)
 	private Double prixAchat;
 
 	@Column(name = "PRO_PRIX_VENTE")
+	@JsonView(Views.ViewCommon.class)
 	private Double prixVente;
 
 	@Column(name = "PRO_REFERENCE", length = 100)
+	@JsonView(Views.ViewCommon.class)
 	private String reference;
 
 	@Column(name = "PRO_MODELE", length = 100)
+	@JsonView(Views.ViewCommon.class)
 	private String modele;
 
 	@Column(name = "PRO_STOCK")
+	@JsonView(Views.ViewCommon.class)
 	private int stock;
 
 	@ManyToOne
 	@JoinColumn(name = "PRO_FOURNISSEUR_ID")
+	@JsonView(Views.ViewProduit.class)
 	private Fournisseur fournisseur;
 
 	@OneToMany(mappedBy = "produit")

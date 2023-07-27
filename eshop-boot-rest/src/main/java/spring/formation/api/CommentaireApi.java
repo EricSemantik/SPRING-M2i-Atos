@@ -47,7 +47,7 @@ public class CommentaireApi {
 		return opt.get();
 	}
 
-	@PostMapping
+	@PostMapping("")
 	public Commentaire create(@RequestBody Commentaire commentaire) {
 		commentaire = this.commentaireRepo.save(commentaire);
 
