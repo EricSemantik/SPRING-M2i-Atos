@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout.html">
+<head>
+<meta charset="UTF-8">
+<title>Edition d'un commentaire</title>
+</head>
+<body>
+	<section layout:fragment="monContenu">
+		<div class="card mt-3">
+			<form th:action="@{/commentaire/saveBis}" method="post">
+				<input type="hidden" name="id" th:value="${commentaire.id}" />
+				<div class="card-header bg-primary text-white display-6">Edition
+					d'un commentaire</div>
+				<div class="card-body">
+					<div class="form-group">
+						<label for="date">Date:</label> <input type="datetime-local"
+							class="form-control" id="date" name="date"
+							th:value="${#dates.format(commentaire.date, 'yyyy-MM-dd''T''HH:mm')}" />
+						<span class="text-danger" th:errors="${commentaire.date}"></span>
+					</div>
+					<div class="form-group">
+						<label for="note">Note:</label> <input type="number"
+							class="form-control" id="note" name="note"
+							th:value="${commentaire.note}" />
+						<span class="text-danger" th:errors="${commentaire.note}"></span>
+					</div>
+					<div class="form-group">
+						<label for="commentaire">Commentaire:</label>
+						<textarea class="form-control" id="commentaire" name="commentaire"
+							rows="5">[[${commentaire.commentaire}]]</textarea>
+						<span class="text-danger" th:errors="${commentaire.commentaire}"></span>
+					</div>
+
+				</div>
+				<div class="card-footer">
+					<div class="btn-group btn-group-lg float-right">
+						<button type="submit" class="btn btn-success">
+							<i class="bi bi-check-square-fill"></i>
+						</button>
+						<a class="btn btn-warning"><i
+							class="bi bi-backspace-fill"></i></a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</section>
+</body>
+</html>
